@@ -72,11 +72,13 @@ public partial class MergeBinTool : Window
 
             CueListViewItem SelectedCUEFile = (CueListViewItem)CUEsListView.SelectedItem;
             string NewBaseNameTitle = Path.GetFileNameWithoutExtension(SelectedCUEFile.FileName) + "_merged";
-            string OutputPath = Path.GetDirectoryName(SelectedCUEFile.FileName)!;
+            string OutputDirectory = Path.Combine(Environment.CurrentDirectory, "Converted", "BIN", "CDR");
+            Directory.CreateDirectory(OutputDirectory);
 
             // Set BinMerge process properties
             Process BinMerge = new();
             BinMerge.StartInfo.FileName = OperatingSystem.IsWindows() ? Path.Combine(Environment.CurrentDirectory, "Tools", "binmerge.exe") : Path.Combine(Environment.CurrentDirectory, "Tools", "binmerge");
+            BinMerge.StartInfo.WorkingDirectory = OutputDirectory;
             BinMerge.StartInfo.Arguments = "\"" + SelectedCUEFile.FileName + "\" " + "\"" + NewBaseNameTitle + "\"";
             BinMerge.StartInfo.RedirectStandardOutput = true;
             BinMerge.StartInfo.RedirectStandardError = true;
@@ -172,10 +174,13 @@ public partial class MergeBinTool : Window
             foreach (CueListViewItem CUE in CUEsListView.Items.Select(v => (CueListViewItem)v!))
             {
                 string NewBaseNameTitle = Path.GetFileNameWithoutExtension(CUE.FileName) + "_merged";
+                string OutputDirectory = Path.Combine(Environment.CurrentDirectory, "Converted", "BIN", "CDR");
+                Directory.CreateDirectory(OutputDirectory);
 
                 // Set BinMerge process properties
                 Process BinMerge = new();
                 BinMerge.StartInfo.FileName = OperatingSystem.IsWindows() ? Path.Combine(Environment.CurrentDirectory, "Tools", "binmerge.exe") : Path.Combine(Environment.CurrentDirectory, "Tools", "binmerge");
+                BinMerge.StartInfo.WorkingDirectory = OutputDirectory;
                 BinMerge.StartInfo.Arguments = "\"" + CUE.FileName + "\" " + "\"" + NewBaseNameTitle + "\"";
                 BinMerge.StartInfo.RedirectStandardOutput = true;
                 BinMerge.StartInfo.RedirectStandardError = true;
