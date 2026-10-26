@@ -227,11 +227,25 @@ public partial class PS5WebBrowserAdder : Window
             // Connect
             conn.Connect();
 
-            // Remove the old app.db (overwrite is not implemented yet) to upload the updated one
-            conn.DeleteFile("/system_data/priv/mms/app.db");
+            // Safely backup and overwrite app.db
+            if (conn.FileExists("/system_data/priv/mms/app.db"))
+            {
+                try { conn.Rename("/system_data/priv/mms/app.db", "/system_data/priv/mms/app.db.bak"); } catch { }
+            }
 
-            // Send the app.db back
-            conn.UploadFile(Path.Combine(Environment.CurrentDirectory, "Cache", "app.db"), "/system_data/priv/mms/app.db", FtpRemoteExists.NoCheck);
+            // Upload the updated app.db
+            var uploadStatus = conn.UploadFile(Path.Combine(Environment.CurrentDirectory, "Cache", "app.db"), "/system_data/priv/mms/app.db", FtpRemoteExists.Overwrite);
+            if (uploadStatus == FtpStatus.Success)
+            {
+                try { conn.DeleteFile("/system_data/priv/mms/app.db.bak"); } catch { }
+            }
+            else
+            {
+                // Restore backup if upload failed
+                try { conn.Rename("/system_data/priv/mms/app.db.bak", "/system_data/priv/mms/app.db"); } catch { }
+                conn.Disconnect();
+                return false;
+            }
 
             // Send the data/app folder
             conn.UploadFile(Path.Combine(Environment.CurrentDirectory, "Tools", "NPXS20102", "icon0.png"), "/data/apps/NPXS20102/icon0.png", FtpRemoteExists.NoCheck, true);

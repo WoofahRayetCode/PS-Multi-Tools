@@ -1586,6 +1586,18 @@ public partial class PS5ParamAdvanced : Window
                 #endregion
                 case "Asa":
                     {
+                        CurrentParamJson.Asa ??= new Asa();
+                        if (SelectedParam.ParamName == "Code" || SelectedParam.ParamName == "code")
+                        {
+                            CurrentParamJson.Asa.Code ??= new Code();
+                            CurrentParamJson.Asa.Code.Asa10 = ModifyValueTextBox.Text;
+                            SelectedParam.ParamValue = ModifyValueTextBox.Text;
+                        }
+                        else if (SelectedParam.ParamName == "Sign" || SelectedParam.ParamName == "sign")
+                        {
+                            CurrentParamJson.Asa.Sign = ModifyValueTextBox.Text?.Split(',', StringSplitOptions.TrimEntries);
+                            SelectedParam.ParamValue = ModifyValueTextBox.Text;
+                        }
                         break;
                     }
                 // Todo
@@ -2210,6 +2222,18 @@ public partial class PS5ParamAdvanced : Window
                 #endregion
                 case "Asa":
                     {
+                        if (SelectedParam.ParamName == "Code" || SelectedParam.ParamName == "code")
+                        {
+                            if (CurrentParamJson.Asa is not null) CurrentParamJson.Asa.Code = null;
+                        }
+                        else if (SelectedParam.ParamName == "Sign" || SelectedParam.ParamName == "sign")
+                        {
+                            if (CurrentParamJson.Asa is not null) CurrentParamJson.Asa.Sign = null;
+                        }
+                        else
+                        {
+                            CurrentParamJson.Asa = null;
+                        }
                         break;
                     }
                 // Todo
@@ -3508,6 +3532,10 @@ public partial class PS5ParamAdvanced : Window
                             #endregion
                             case "Asa":
                                 {
+                                    CurrentParamJson.Asa ??= new Asa();
+                                    CurrentParamJson.Asa.Code = new Code() { Asa10 = ParamValueTextBox.Text };
+                                    ParamsListBox.Items.Add(new ParamListViewItem() { ParamName = "code", ParamType = "Code", ParamValue = ParamValueTextBox.Text });
+                                    exitFor = true;
                                     break;
                                 }
                             // Todo

@@ -31,22 +31,10 @@ namespace PSMultiTools
             NewPS2Library.Show();
         }
 
-        private async void PSXImage_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
+        private void PSXImage_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
         {
-            //if (Utils.IsRunningAsAdministratorOrRoot())
-            //{
-            //    var NewPSXProjectManager = new PSXMainWindow() { ShowActivated = true };
-            //    NewPSXProjectManager.Show();
-            //}
-            //else
-            //{
-            //    var box = MessageBoxManager.GetMessageBoxStandard("Elevation required", "This feature requires Administrator/Root permissions." + Environment.NewLine + "Do you want to restart PS Multi Tools as Administrator/Root ?", ButtonEnum.YesNo, MsBox.Avalonia.Enums.Icon.Question);
-            //    var boxresult = await box.ShowWindowDialogAsync(this);
-            //    if (boxresult == ButtonResult.Yes)
-            //    {
-            //        Utils.RunAsAdministrator();
-            //    }
-            //}
+            var NewPSXProjectManager = new PSXMainWindow() { ShowActivated = true };
+            NewPSXProjectManager.Show();
         }
 
         private void PS3Image_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
@@ -90,22 +78,10 @@ namespace PSMultiTools
             NewPS2Library.Show();
         }
 
-        private async void PSXTextBlock_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
+        private void PSXTextBlock_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
         {
-            //if (Utils.IsRunningAsAdministratorOrRoot())
-            //{
-            //    var NewPSXProjectManager = new PSXMainWindow() { ShowActivated = true };
-            //    NewPSXProjectManager.Show();
-            //}
-            //else
-            //{
-            //    var box = MessageBoxManager.GetMessageBoxStandard("Elevation required", "This feature requires Administrator/Root permissions." + Environment.NewLine + "Do you want to restart PS Multi Tools as Administrator/Root ?", ButtonEnum.YesNo, MsBox.Avalonia.Enums.Icon.Question);
-            //    var boxresult = await box.ShowWindowDialogAsync(this);
-            //    if (boxresult == ButtonResult.Yes)
-            //    {
-            //        Utils.RunAsAdministrator();
-            //    }
-            //}
+            var NewPSXProjectManager = new PSXMainWindow() { ShowActivated = true };
+            NewPSXProjectManager.Show();
         }
 
         private void PS3TextBlock_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)

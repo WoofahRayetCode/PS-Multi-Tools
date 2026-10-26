@@ -876,12 +876,10 @@ public partial class PSVMenu : UserControl
         NewPS5RcoExtractor.Show();
     }
 
-    private async void OpenIMGTools_Click(object sender, RoutedEventArgs e)
+    private void OpenIMGTools_Click(object sender, RoutedEventArgs e)
     {
-        // Dim NewPSVIMGTools As New PSVIMGTools() With {.ShowActivated = True}
-        // NewPSVIMGTools.Show()
-        var box = MessageBoxManager.GetMessageBoxStandard("Info", "Not ready yet", ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Info);
-        await box.ShowWindowAsync();
+        var NewPSVIMGTools = new PSVIMGTools() { ShowActivated = true };
+        NewPSVIMGTools.Show();
     }
 
     private void OpenParamSFOEditorMenuItem_Click(object sender, RoutedEventArgs e)

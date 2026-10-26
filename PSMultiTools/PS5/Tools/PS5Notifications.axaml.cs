@@ -833,19 +833,24 @@ public partial class PS5Notifications : Window
                 // Connect
                 conn.Connect();
 
-                // Remove the old notification2.db (overwrite is not implemented yet) to upload the updated one
-                conn.DeleteFile("/system_data/priv/mms/notification2.db");
+                // Safely backup and overwrite notification2.db
+                if (conn.FileExists("/system_data/priv/mms/notification2.db"))
+                {
+                    try { conn.Rename("/system_data/priv/mms/notification2.db", "/system_data/priv/mms/notification2.db.bak"); } catch { }
+                }
 
                 // Upload updated notification2.db
-                var NewFTPStatus = conn.UploadFile(NotificationsDB2Path, "/system_data/priv/mms/notification2.db", FtpRemoteExists.NoCheck);
+                var NewFTPStatus = conn.UploadFile(NotificationsDB2Path, "/system_data/priv/mms/notification2.db", FtpRemoteExists.Overwrite);
 
                 if (NewFTPStatus == FtpStatus.Success)
                 {
+                    try { conn.DeleteFile("/system_data/priv/mms/notification2.db.bak"); } catch { }
                     var box = MessageBoxManager.GetMessageBoxStandard("Info", "Notifications on the console have been updated." + Environment.NewLine + "Check your notifications on the PS5.", ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Info);
                     await box.ShowWindowAsync();
                 }
-                else if (NewFTPStatus == FtpStatus.Failed)
+                else
                 {
+                    try { conn.Rename("/system_data/priv/mms/notification2.db.bak", "/system_data/priv/mms/notification2.db"); } catch { }
                     var box = MessageBoxManager.GetMessageBoxStandard("Error", "Could not update the notifications on the console." + Environment.NewLine + "Please verify your connection.", ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Error);
                     await box.ShowWindowAsync();
                 }

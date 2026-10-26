@@ -138,7 +138,7 @@
 				</Grid>
 			</TabItem>
 		</TabControl>
-		<Button x:Name="NewSFOButton" Content="Create a new PARAM.SFO file" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="23,19,0,0" VerticalAlignment="Top" Width="275" FontWeight="Bold" IsEnabled="False"/>
+		<Button x:Name="NewSFOButton" Content="Create a new PARAM.SFO file" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="23,19,0,0" VerticalAlignment="Top" Width="275" FontWeight="Bold"/>
 		<TextBlock Text="System Version (Hex Value for PS4 &amp; Vita)" HorizontalAlignment="Left" Margin="23,546,0,0" VerticalAlignment="Top" Foreground="White"/>
 		<TextBox x:Name="SystemVersionTextBox" HorizontalAlignment="Left" Margin="23,570,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="275"/>
 		<TextBlock Text="Content ID" HorizontalAlignment="Left" Margin="23,243,0,0" VerticalAlignment="Top" Foreground="White"/>

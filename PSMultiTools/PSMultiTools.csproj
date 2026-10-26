@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
 		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
@@ -213,28 +213,20 @@
 
 	<ItemGroup>
 		<Reference Include="GameArchives">
-		  <HintPath>..\..\PS4_Tools\PS4_Tools\bin\Release\net8.0\GameArchives.dll</HintPath>
-		</Reference>
-		<Reference Include="Interop.IMAPI2">
-		  <HintPath>..\..\..\..\Documents\Interop.IMAPI2.dll</HintPath>
-		  <Private>True</Private>
-		</Reference>
-		<Reference Include="Interop.IMAPI2FS">
-		  <HintPath>..\..\..\..\Documents\Interop.IMAPI2FS.dll</HintPath>
-		  <Private>True</Private>
+		  <HintPath>..\Libraries\Managed\GameArchives.dll</HintPath>
 		</Reference>
 		<Reference Include="Interop.NetFwTypeLib">
-		  <HintPath>..\..\..\..\Documents\Interop.NetFwTypeLib.dll</HintPath>
+		  <HintPath>..\Libraries\Managed\Interop.NetFwTypeLib.dll</HintPath>
 		  <Private>True</Private>
 		</Reference>
 		<Reference Include="LibOrbisPkg">
-		  <HintPath>..\..\PS4_Tools\PS4_Tools\bin\Release\net8.0\LibOrbisPkg.dll</HintPath>
+		  <HintPath>..\Libraries\Managed\LibOrbisPkg.dll</HintPath>
 		</Reference>
 		<Reference Include="PARAM.SFO">
-		  <HintPath>..\..\PS4_Tools\PS4_Tools\bin\Release\net8.0\PARAM.SFO.dll</HintPath>
+		  <HintPath>..\Libraries\Managed\PARAM.SFO.dll</HintPath>
 		</Reference>
 		<Reference Include="PS4_Tools">
-		  <HintPath>..\..\PS4_Tools\PS4_Tools\bin\Release\net8.0\PS4_Tools.dll</HintPath>
+		  <HintPath>..\Libraries\Managed\PS4_Tools.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 
